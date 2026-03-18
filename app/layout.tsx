@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/header";
 
-const poppinsFont = Poppins({
+const poppinsFont = DM_Sans({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
@@ -19,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppinsFont.className} antialiased`}>{children}</body>
+    <html lang="en" className="dark">
+      <body className={`${poppinsFont.className} antialiased`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
