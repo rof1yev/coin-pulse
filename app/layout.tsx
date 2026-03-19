@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "CoinPulse",
   description:
     "Crypto Screener App with a built-in High-Frequency Terminal & Dashboard",
+  icons: { icon: { href: "./favicon.ico", url: "./favicon.ico" } },
 };
 
 export default function RootLayout({
