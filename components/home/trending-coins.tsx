@@ -39,7 +39,7 @@ const columns: DataTableColumn<TrendingCoin>[] = [
       return (
         <div
           className={cn(
-            "price-change flex flex-col gap-1",
+            "price-change",
             isTrendingUp ? "text-green-500" : "text-red-500",
           )}
         >
