@@ -1,6 +1,6 @@
 import DataTable from "@/components/data-table";
 import { fetcher } from "@/lib/coingecko.actions";
-import { cn, formatCurrency } from "@/lib/utils";
+import { cn, formatCurrency, formatPercentage } from "@/lib/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,15 +43,14 @@ const columns: DataTableColumn<TrendingCoin>[] = [
             isTrendingUp ? "text-green-500" : "text-red-500",
           )}
         >
-          {isTrendingUp ? (
-            <TrendingUp height={16} width={16} />
-          ) : (
-            <TrendingDown height={16} width={16} />
-          )}
-
-          <p>
+          <p className="flex items-center">
             {change > 0 ? "+" : ""}
-            {change.toFixed(2)}%
+            {formatPercentage(change)}
+            {isTrendingUp ? (
+              <TrendingUp height={16} width={16} />
+            ) : (
+              <TrendingDown height={16} width={16} />
+            )}
           </p>
         </div>
       );

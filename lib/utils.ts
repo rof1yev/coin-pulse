@@ -31,9 +31,10 @@ export function formatCurrency(
 }
 
 export function formatPercentage(change: number | null | undefined): string {
-  if (change === null || change === undefined || isNaN(change)) {
-    return "0.0%";
-  }
+  if (change === null || change === undefined || isNaN(change)) return "0.0%";
+
+  if (Math.abs(change) < 0.05) return "0.0%";
+
   const formattedChange = change.toFixed(1);
   return `${formattedChange}%`;
 }
