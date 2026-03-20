@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { fetcher } from "@/lib/coingecko.actions";
 import DataTable from "../data-table";
-import Image from "next/image";
 import { cn, formatCurrency, formatPercentage } from "@/lib/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
+import { CategoriesFallback } from "./fallback";
 
 const columns: DataTableColumn<Category>[] = [
   {
@@ -66,7 +67,14 @@ const columns: DataTableColumn<Category>[] = [
 ];
 
 const Categories = async () => {
-  const categories = await fetcher<Category[]>("/coins/categories");
+  let categories;
+
+  try {
+    categories = await fetcher<Category[]>("/coins/categories");
+  } catch (error) {
+    console.log("Error fetching top categories coins:", error);
+    return <CategoriesFallback />;
+  }
 
   return (
     <div id="categories" className="custom-scrollbar">
